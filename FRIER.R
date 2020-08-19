@@ -55,7 +55,7 @@ calculateEnrichedRanges <- function(bam,
                                                             mode="IntersectionNotEmpty"), minoverlap=1, type = "any"))
     summary.overlap$reads/length(bam2)
   }
-  FRIER.m <- as.data.frame(t(matrix(c(min.fc,FRIER), nrow=2, byrow = T)))
-  names(FRIER.m) <- c("enrichmentLevel", "PercReads")
+  FRIER.m <- as.data.frame(t(matrix(c(log2(min.fc),FRIER), nrow=2, byrow = T)))
+  names(FRIER.m) <- c("fold_enrichment", "reads_%")
   return(FRIER.m)
 }
