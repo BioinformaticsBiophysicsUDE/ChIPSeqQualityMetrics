@@ -1,9 +1,7 @@
+require("GenomicRanges")
+require(csaw)
+
 spearman_pearson_correlation <- function(file,  file1,  binsize, name, name1, blacklist.file, setLim= "auto", save=T, ext = 60){
-  library( ShortRead )
-  require("IRanges")
-  require("GenomicRanges")
-  require(csaw)
-  require(dplyr)
   
   standard.chr <- paste0("chr", c(1:19, "X", "Y"))
   mm10_blacklist <-readRDS(blacklist.file)
