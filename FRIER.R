@@ -2,6 +2,20 @@ require("csaw")
 require("GenomicAlignments")
 require("foreach")
 
+#' Title
+#'
+#' @param bam path to bam file
+#' @param blacklist file with blacklisted regions in rds-format
+#' @param minq minimum mapping quality
+#' @param window.width 
+#' @param bin.width 
+#' @param filter 
+#' @param fraglen 
+#'
+#' @return FRIER data frame
+#' @export
+#'
+#' @examples
 calculateEnrichedRanges <- function(bam, 
                                     blacklist, minq=25,
                                     window.width=150, bin.width=3000, filter=1, fraglen=60){
@@ -21,6 +35,8 @@ calculateEnrichedRanges <- function(bam,
   #Filtering windows by abundance
   # Count the number of extended reads overlapping a sliding window at spaced positions across the genome.
   bins <- windowCounts(bam, bin=TRUE, width=bin.width, param=param) 
+  # for higher R version
+  # filter.stat <- filterWindowsGlobal(win.data, bins)
   filter.stat <- filterWindows(win.data, bins, type="global")
   bam2 <- readGAlignments(bam)
   min.fc <- c(seq(1.1 ,16.1, by = 0.5))
