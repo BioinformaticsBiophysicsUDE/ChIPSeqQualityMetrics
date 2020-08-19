@@ -1,6 +1,21 @@
 require("GenomicRanges")
 require(csaw)
-
+#' Title
+#'
+#' @param file path to bam file a
+#' @param file1 path to bam file b
+#' @param binsize 
+#' @param name sample name of file a
+#' @param name1 sample name of file b
+#' @param blacklist.file blacklist file in rds format
+#' @param setLim plot parameter
+#' @param save if True a plot is generated and saved
+#' @param ext 
+#'
+#' @return data.frame with spearman and pearson correlation values
+#' @export
+#'
+#' @examples
 spearman_pearson_correlation <- function(file,  file1,  binsize, name, name1, blacklist.file, setLim= "auto", save=T, ext = 60){
   
   standard.chr <- paste0("chr", c(1:19, "X", "Y"))
